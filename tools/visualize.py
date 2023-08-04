@@ -18,20 +18,20 @@ class ResultVisualize():
         # ax1.plot(epoch_list, val_loss, linestyle='--', color=color, label='val') #점선 
         ax1.tick_params(axis='y', labelcolor=color)
 
-        ax2 = ax1.twinx() 
+        # ax2 = ax1.twinx() 
 
-        color = 'tab:blue'
-        ax2.set_ylabel('Accuracy', color=color)
-        ax2.plot(self.epoch_list, self.df['acc'], color=color, label='train')
-        # ax2.plot(epoch_list, val_accuracy, linestyle='--', color=color, label='val')
-        ax2.tick_params(axis='y', labelcolor=color)
+        # color = 'tab:blue'
+        # ax2.set_ylabel('Accuracy', color=color)
+        # ax2.plot(self.epoch_list, self.df['acc'], color=color, label='train')
+        # # ax2.plot(epoch_list, val_accuracy, linestyle='--', color=color, label='val')
+        # ax2.tick_params(axis='y', labelcolor=color)
 
         # 그래프에 legend 추가
         lines1, labels1 = ax1.get_legend_handles_labels()
-        lines2, labels2 = ax2.get_legend_handles_labels()
-        lines = lines1 + lines2
-        labels = labels1 + labels2
-        ax1.legend(lines, labels, loc='right') #'lower right', 'lower left', 'upper right', 'center', 'right', 'left', ...
+        # lines2, labels2 = ax2.get_legend_handles_labels()
+        # lines = lines1 + lines2
+        # labels = labels1 + labels2
+        ax1.legend(lines1, labels1, loc='right') #'lower right', 'lower left', 'upper right', 'center', 'right', 'left', ...
 
         fig.tight_layout()
         plt.savefig(save_path) #이미지 저장 
