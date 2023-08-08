@@ -81,9 +81,9 @@ def main():
         _, embel_indx = embel_pred.max(1)
         embel_pred_list = np.concatenate([embel_pred_list, embel_indx.cpu()], axis=0)
 
-    daily_top_1, daily_acsa = get_test_metrics(daily_gt_list, daily_pred_list)
-    gender_top_1, gender_acsa = get_test_metrics(gender_gt_list, gender_pred_list)
-    embel_top_1, embel_acsa = get_test_metrics(embel_gt_list, embel_pred_list)
+    daily_top_1, daily_acsa, d_pre, d_recall, d_f1 = get_test_metrics(daily_gt_list, daily_pred_list)
+    gender_top_1, gender_acsa, g_pre, g_recall, g_f1 = get_test_metrics(gender_gt_list, gender_pred_list)
+    embel_top_1, embel_acsa, e_pre, e_recall, e_f1 = get_test_metrics(embel_gt_list, embel_pred_list)
     print("------------------------------------------------------")
     print(
         "Daily:(Top-1=%.5f, ACSA=%.5f), Gender:(Top-1=%.5f, ACSA=%.5f), Embellishment:(Top-1=%.5f, ACSA=%.5f)" % (
@@ -108,8 +108,12 @@ def get_test_metrics(y_true, y_pred, verbose=True):
 
     top_1 = np.sum(TP)/np.sum(np.sum(cnf_matrix))
     cs_accuracy = TP / cnf_matrix.sum(axis=1)
+    precision = TP/(TP+FP)
+    recall = TP/(TP+FN)
+    f1 = 2 * (precision*recall) /(precision + recall)
+    f1 = np.mean(f1)
 
-    return top_1, cs_accuracy.mean()
+    return top_1, cs_accuracy.mean(), precision.mean(), recall.mean(), f1 
 
 
 if __name__ == '__main__':
