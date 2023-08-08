@@ -86,8 +86,9 @@ def main():
     embel_top_1, embel_acsa, e_pre, e_recall, e_f1 = get_test_metrics(embel_gt_list, embel_pred_list)
     print("------------------------------------------------------")
     print(
-        "Daily:(Top-1=%.5f, ACSA=%.5f), Gender:(Top-1=%.5f, ACSA=%.5f), Embellishment:(Top-1=%.5f, ACSA=%.5f)" % (
-            daily_top_1, daily_acsa, gender_top_1, gender_acsa, embel_top_1, embel_acsa))
+        "Daily:(Top-1=%.5f, ACSA=%.5f, pre=%.5f, rec=%.5f, f1=%.5f),\nGender:(Top-1=%.5f, ACSA=%.5f, pre=%.5f, rec=%.5f, f1=%.5f),\nEmbellishment:(Top-1=%.5f, ACSA=%.5f, pre=%.5f, rec=%.5f, f1=%.5f)" % (
+            daily_top_1, daily_acsa,d_pre, d_recall, d_f1, gender_top_1, gender_acsa,g_pre, g_recall, g_f1, embel_top_1, embel_acsa, e_pre, e_recall, e_f1))
+    
     print("------------------------------------------------------")
 
 
